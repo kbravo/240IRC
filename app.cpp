@@ -1,5 +1,4 @@
 #include <time.h>
-//#include <curses.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -61,7 +60,7 @@ int open_client_socket(char * host, int port) {
   struct  sockaddr_in socketAddress;
 
   strcpy(host, "localhost");
-  port = 1200;
+  port = 8080;
   // Clear sockaddr structure
   memset((char *)&socketAddress,0,sizeof(socketAddress));
   
@@ -615,8 +614,14 @@ void sign_up_procedure(GtkWidget *button, gpointer data) {
 int main( int   argc,
           char *argv[] )
 {
+
     char * msgs = (char *) malloc(10000*sizeof(char));
     
+    GApplication *app;
+    int status;
+
+    app = g_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
+
     GtkWidget *window;
 
     GtkWidget *list2;
